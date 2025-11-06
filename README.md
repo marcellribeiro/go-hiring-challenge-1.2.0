@@ -1,3 +1,40 @@
+# Implementation Summary
+### Implemented Features
+I uploaded the .env file just for ease of testing. 
+This is not a good practice for production code.
+
+**API Endpoints:**
+- `GET /categories` - List all categories with pagination and total count
+- `POST /categories` - Create new category with validation (code and name required)
+- `GET /catalog` - List products with category, pagination (offset/limit), and filters
+- `GET /catalog/:code` - Get product details including category and variants
+- Query parameters support:
+  - `offset` (default: 0) and `limit` (default: 10, max: 100, min: 1)
+  - `category` - Filter by category code
+  - `priceLessThan` - Filter by maximum price
+
+**Key Functionalities:**
+- ✅ Products include category information in responses
+- ✅ Offset-based pagination with configurable limits
+- ✅ Total count returned for both products and categories
+- ✅ Category filter applied to product listings
+- ✅ Price filter (less than) applied to product listings
+- ✅ Multiple filters can be combined
+- ✅ Variants inherit product price when their price is 0
+- ✅ Categories are persisted in the database
+- ✅ Input validation for required fields
+
+**Database Schema:**
+- 3 initial categories: CLOTHING, SHOES, ACCESSORIES
+
+**Test Coverage:**
+- `app/api` - 100%
+- `app/catalog` - 88.9%
+- `app/categories` - 76.0%
+- `app/product` - 80.0%
+
+---
+
 # Go Hiring Challenge
 
 This repository contains a Go application for managing products and their prices, including functionalities for CRUD operations and seeding the database with initial data.

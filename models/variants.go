@@ -1,6 +1,8 @@
 package models
 
 import (
+	"time"
+
 	"github.com/shopspring/decimal"
 )
 
@@ -13,6 +15,8 @@ type Variant struct {
 	Name      string          `gorm:"not null"`
 	SKU       string          `gorm:"uniqueIndex;not null"`
 	Price     decimal.Decimal `gorm:"type:decimal(10,2);null"`
+	CreatedAt time.Time       `gorm:"autoCreateTime"`
+	UpdatedAt time.Time       `gorm:"autoUpdateTime"`
 }
 
 func (v *Variant) TableName() string {

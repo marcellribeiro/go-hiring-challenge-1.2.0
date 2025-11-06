@@ -1,56 +1,74 @@
 package catalog
 
 import (
-	"encoding/json"
 	"net/http"
 
-	"github.com/mytheresa/go-hiring-challenge/models"
+	"github.com/mytheresa/go-hiring-challenge/app/api"
+	"github.com/mytheresa/go-hiring-challenge/internal/common"
+	"github.com/mytheresa/go-hiring-challenge/internal/repository"
+	"github.com/shopspring/decimal"
 )
 
 type Response struct {
-	Products []Product `json:"products"`
-}
-
-type Product struct {
-	Code  string  `json:"code"`
-	Price float64 `json:"price"`
+	Products []interface{} `json:"products"`
+	Total    int64         `json:"total"`
 }
 
 type CatalogHandler struct {
-	repo *models.ProductsRepository
+	repo repository.ProductsInterface
 }
 
-func NewCatalogHandler(r *models.ProductsRepository) *CatalogHandler {
+func NewCatalogHandler(r repository.ProductsInterface) *CatalogHandler {
 	return &CatalogHandler{
 		repo: r,
 	}
 }
 
-func (h *CatalogHandler) HandleGet(w http.ResponseWriter, r *http.Request) {
-	res, err := h.repo.GetAllProducts()
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-		return
-	}
+func (h *CatalogHandler) HandleGetAll(w http.ResponseWriter, r *http.Request) {
+	// Process filters from request
+	filter := h.processFilters(r)
 
-	// Map response
-	products := make([]Product, len(res))
-	for i, p := range res {
-		products[i] = Product{
-			Code:  p.Code,
-			Price: p.Price.InexactFloat64(),
-		}
+	// Get products from repository
+	products, total, err := h.repo.GetProducts(filter)
+	if err != nil {
+		api.ErrorResponse(w, http.StatusInternalServerError, err.Error())
+		return
 	}
 
 	// Return the products as a JSON response
-	w.Header().Set("Content-Type", "application/json")
-
 	response := Response{
-		Products: products,
+		Products: make([]interface{}, len(products)),
+		Total:    total,
 	}
 
-	if err := json.NewEncoder(w).Encode(response); err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-		return
+	for i := range products {
+		response.Products[i] = products[i]
 	}
+
+	api.OKResponse(w, response)
+}
+
+func (h *CatalogHandler) processFilters(r *http.Request) repository.ProductsFilter {
+	// Parse pagination parameters
+	offset, limit := common.ParseOffsetLimit(r)
+
+	// Build filter
+	filter := repository.ProductsFilter{
+		Offset: offset,
+		Limit:  limit,
+	}
+
+	// Parse category filter
+	if categoryCode := r.URL.Query().Get("category"); categoryCode != "" {
+		filter.CategoryCode = &categoryCode
+	}
+
+	// Parse max price filter
+	if maxPriceStr := r.URL.Query().Get("priceLessThan"); maxPriceStr != "" {
+		if maxPrice, err := decimal.NewFromString(maxPriceStr); err == nil {
+			filter.MaxPrice = &maxPrice
+		}
+	}
+
+	return filter
 }
