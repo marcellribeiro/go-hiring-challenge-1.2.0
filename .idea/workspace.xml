@@ -4,7 +4,28 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9b3b9bac-e977-4c40-a7a0-fe28b49c9daf" name="Changes" comment="" />
+    <list default="true" id="9b3b9bac-e977-4c40-a7a0-fe28b49c9daf" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ASSIGNMENT.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/api/response.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/api/response_test.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/catalog/handler.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/database/pg.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmd/seed/main.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmd/server/main.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/products.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/products_repository.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/variants.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql/000-truncate.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql/001-products.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql/002-variants.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql/003-product-data.sql" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -19,8 +40,25 @@
   </component>
   <component name="GOROOT" url="file:///opt/homebrew/opt/go/libexec" />
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "marcellribeiro"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/marcellribeiro/go-hiring-challenge-1.2.0.git",
+    "accountId": "25e9ef96-f054-4c56-a661-e193ca74cfca"
+  }
+}]]></component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 5
 }</component>
@@ -41,7 +79,7 @@
     "RunOnceActivity.go.formatter.settings.were.checked": "true",
     "RunOnceActivity.go.migrated.go.modules.settings": "true",
     "RunOnceActivity.go.modules.go.list.on.any.changes.was.set": "true",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "marcell-work",
     "go.import.settings.migrated": "true",
     "go.sdk.automatically.set": "true",
     "last_opened_file_path": "/Users/marcell/go/src/github.com/marcellribeiro/go-hiring-challenge-1.2.0",
